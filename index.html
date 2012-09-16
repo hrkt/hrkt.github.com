@@ -11,25 +11,56 @@ http://hrkt.github.com
 <hr>
 <h1>Japanese Numerical System converter</h1>
 <h2>site</h2>
-<h3></h3>
+<h3>https://github.com/hrkt/hrktsoft-repo</h3>
+<h2>summary</h2>
+<p>
+A converter for BigInteger to Japanese Numerical System.
+</p>
+
+<p>
+JavaのBigIntegerから、日本語の命数付きの表現に変換するためのユーティリティーです。
+</p>
+
+<h2>example</h2>
+<pre>
+MyMBA:JapaneseNumerationSystemConverter hiroki$ java -jar target/JapaneseNumerationSystemConverter-0.0.1-SNAPSHOT.jar 
+[A Japanese Numerical System Converter]
+
+usage:
+- type in zero or positive value and press enter.
+- press ctrl+c to quit.
+
+- This tool cannot run on Eclipse console.
+- if you have encoding problems on MacOSX + Java, try put these two lines in your .bash_profile)
+alias javac='javac -J-Dfile.encoding=UTF-8'
+alias java='java -Dfile.encoding=UTF-8'
+
+number?1234567890123456789012345678901234567890123456789012345678901234567890
+1234567890123456789012345678901234567890123456789012345678901234567890=>12無量大数3456不可思議7890那由他1234阿僧祇5678恒河沙9012極3456載7890正1234澗5678溝9012穣3456𥝱7890垓1234京5678兆9012億3456万7890
+
+</pre>
+<h2>apidocs</h2>
+<h3><a href="apidocs">Javadoc</a></h3>
+<h2>license</h2>
+<h3>Apache License Version 2.0</h3>
 <h2>repo</h2>
 <h3></h3>
 <pre>
 
-	<repositories>
-	<repository>
-		<id>hrkt-snapshots</id>
-		<url>http://github.com/hrkt/hrktsoft-repo/raw/master/snapshots</url>
-	</repository>
-	</repositories>
+	&ltrepositories&gt
+	&ltrepository&gt
+		&ltid&gthrkt-snapshots&lt/id&gt
+		&lturl&gthttp://github.com/hrkt/hrktsoft-repo/raw/master/snapshots&lt/url&gt
+	&lt/repository&gt
+	&lt/repositories&gt
 	
-	<dependencies>
-		<dependency>
-			<groupId>com.hrktsoft</groupId>
-			<artifactId>JapaneseNumerationSystemConverter</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
+	&ltdependencies&gt
+		&ltdependency&gt
+			&ltgroupId&gtcom.hrktsoft&lt/groupId&gt
+			&ltartifactId&gtJapaneseNumerationSystemConverter&lt/artifactId&gt
+			&ltversion&gt0.0.1-SNAPSHOT&lt/version&gt
+		&lt/dependency&gt
+	&lt/dependencies&gt
 
 </pre>
 
