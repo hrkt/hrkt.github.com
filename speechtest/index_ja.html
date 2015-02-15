@@ -1,0 +1,191 @@
+<!-- Copyright(c) 2015 Hiroki Ito -->
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>数字を繰り返すゲーム</title>
+    <meta charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./game.css" rel="stylesheet" type="text/css">
+  </head>
+  <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- <h1>読み上げられた数字を逆の順に言うゲーム</h1> -->
+      <h1  data-anijs="if: click, do: flipInY animated">読み上げられた数字を繰り返すゲーム<small><a href="#howtoplay">[遊び方]</a></small></h1>
+      <div class="row">
+	<div class="col-md-6">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+	      <div class="panel-title span1">問題の設定</div>
+	    </div>
+	    <div class="panel-body">
+	      レベル（数字の数）選択する
+		<div class="btn-group" role="group" aria-label="" data-toggle="buttons">
+		  <label class="btn btn-info" id="lblBtn2"><input type="radio" name="digits" id="btn2" autocomplete="off">2</label>
+		  <label class="btn btn-info" id="lblBtn3"><input type="radio" name="digits" id="btn3" autocomplete="off">3</label>
+		  <label class="btn btn-info" id="lblBtn4"><input type="radio" name="digits" id="btn4" autocomplete="off">4</label>
+		  <label class="btn btn-info" id="lblBtn5"><input type="radio" name="digits" id="btn5" autocomplete="off">5</label>
+		  <label class="btn btn-info" id="lblBtn6"><input type="radio" name="digits" id="btn6" autocomplete="off">6</label>
+		  <label class="btn btn-info" id="lblBtn7"><input type="radio" name="digits" id="btn7" autocomplete="off">7</label>
+		  <label class="btn btn-info" id="lblBtn8"><input type="radio" name="digits" id="btn8" autocomplete="off">8</label>
+		  <label class="btn btn-info" id="lblBtn9"><input type="radio" name="digits" id="btn9" autocomplete="off">9</label>
+		</div>
+		<hr>
+		読み上げ順に答えるか読み上げと逆の順に答えるかを設定する
+	      <div class="btn-group" data-toggle="buttons">
+		<label class="btn btn-info active">
+		  <input type="radio" name="options" id="btnInOrder" autocomplete="off" checked>同じ順で
+		</label>
+		<label class="btn btn-info">
+		  <input type="radio" name="options" id="btnReversedOrder" autocomplete="off">
+		  逆の順で
+		</label>
+	      </div>	      
+	      <hr>
+	      <!-- 読み上げの言語を選択する -->
+	      <h3>読み上げの言語、使用地域を選ぶ</h3>
+	      <div class="btn-group" role="group" aria-label="" id="speechLangGroup" data-toggle="buttons">
+		<!-- このあたりにgame.jsで値をセット- -->
+	      </div>
+	      <hr>
+	      <!-- 答える言語を選択する -->
+	      <h3>答える言語、使用地域を選ぶ</h3>
+	      <div class="btn-group" role="group" aria-label="" id="recognitionLangGroup" data-toggle="buttons">
+		<!-- このあたりにgame.jsで値をセット- -->
+	      </div>
+	  </div>
+	      
+	  </div>
+	</div>
+	<div class="col-md-6">
+
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+	      あそぶ
+	    </div>
+	    <div class="panel-body">
+	    <div class="row">
+	      <div class="col-md-3">
+		    <h2><span class="label label-default" id="lblLevel"></span></h2>
+	      </div>
+	      <div class="col-md-3">
+		<h2><span class="label label-default" id="lblOrder"></span></h2>
+	      </div>
+	      <div class="col-md-3">
+		読み上げの言語と使用地域
+		<div id="lblSpeechLang"></div>
+		<img id="imgSpeechLang" width="44" height="28">
+	      </div>
+	      <div class="col-md-3">
+		答える言語と使用地域
+		<div id="lblDictationLang"></div>
+		<img id="imgRecognitionLang" width="44" height="28">
+	      </div>
+	    </div>
+	    <div class="row">
+	      <br>
+	    </div>
+	    <div class="row">
+	      <div class="col-md-3">
+	      <button class="btn btn-default btn-lg dropdown-toggle btn-primary" type="button" data-toggle="dropdown" aria-expanded="false" id="nextQuestion">
+		<i class="glyphicon glyphicon-play"></i>
+		はじめる
+	      </button>
+	      </div>
+	      <div class="col-md-3"">
+	      <button class="btn btn-default btn-lg dropdown-toggle btn-primary" type="button" data-toggle="dropdown" aria-expanded="false" id="listenAgain">
+		<i class="glyphicon glyphicon-repeat"></i>
+		もう一回
+	      </button>
+	      </div>
+	      <div class="col-md-3">
+	      <button class="btn btn-default btn-lg dropdown-toggle btn-warning" type="button" data-toggle="dropdown" aria-expanded="false" id="quitQuestion">
+		<i class="glyphicon glyphicon-remove"></i>
+		やめる
+	      </button>
+	      </div>
+	      <div class="col-md-3">
+	      </div>
+	    </div>
+	    </div>
+
+	    <div class="well">
+	      <div id="state"></div>
+	      <div id="gameStatus"></div>
+	    </div>
+	    <div class="alert" id="gameResult"></div>
+
+	  </div>
+	</div>
+      </div>
+
+      <div class="row">
+	<div class="col-md-6">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">準備</div>
+	    <div class="panel-body">
+	      <ul>
+		<li>ブラウザには、MacかPCのChrome(40.0以上)を使用してください。</li>
+		<li>マイクの使用を許可する必要があります。アドレスバーの右下あたりに出てくる「許可」を選択してください。</li>
+		<li>[心の準備]認識に誤りがあっても大目に見てあげてください。うまくいかないときは言い直してみてもいいかもしれません。</li>
+	      </ul>
+	    </div>
+	  </div>
+	  
+	</div>
+	<div class="col-md-6">
+	  <div class="panel panel-default" id="howtoplay">
+	    <div class="panel-heading">遊び方</div>
+	    <div class="panel-body">
+	      <ol>
+		<li>問題のレベル（数字の数）を変えたい時には、2から9のボタンを押します。</li>
+		<li>「問題を出す」ボタンを押します。Chromeからマイクを使用するか聞かれたら「許可」してください。</li>
+		<li>Chromeが読み上げた数字と同じ順で数字を言ってください。</li>
+		<li>何かエラーが出た場合は、ページを再読み込みしてください。</li>
+	      </ol>
+	    </div>
+	  </div>
+	</div>
+      </div>
+
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- saynumber -->
+      <div>
+      <ins class="adsbygoogle"
+	   style="display:inline-block;width:728px;height:90px"
+	   data-ad-client="ca-pub-4354654360945948"
+	   data-ad-slot="2004877791"></ins>
+      </div>
+      <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+    </div>
+    <div id="footer">
+      <p>Copyright(C) 2015 hrkt</p>
+    </div>
+
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="./langConfig_ja.js"></script>
+    <script src="./game.js"></script>
+
+    <!-- sound effects -->
+    <audio id="seQuestion" preload="auto">
+      <source src="sounds/question1.mp3" type="audio/mp3">
+    </audio>
+    <audio id="seCorrect" preload="auto">
+      <source src="sounds/correct3.mp3" type="audio/mp3">
+    </audio>
+    <audio id="seIncorrect" preload="auto">
+      <source src="sounds/incorrect2.mp3" type="audio/mp3">
+    </audio>
+    <audio id="seTimeout" preload="auto">
+      <source src="sounds/strike1.mp3" type="audio/mp3">
+    </audio>
+    <audio id="seSelect" preload="auto">
+      <source src="sounds/cursor7.mp3" type="audio/mp3">
+    </audio>
+  </body>
+</html>

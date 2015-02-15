@@ -1,0 +1,13 @@
+h1 {
+    background-color: #ffffff;
+    text-align: center;
+}
+#footer {
+    background-color: #ffffff;
+    text-align: center;
+}
+.flagBox {
+ border: 1px solid #dddddd;
+ padding: 5px;
+ margin: 0px 0px 10px 0px;
+}
