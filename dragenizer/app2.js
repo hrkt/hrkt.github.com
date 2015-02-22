@@ -21,7 +21,7 @@
 // THE SOFTWARE.
 
 //デバッグ時のフラグ
-var DEBUG = false;
+var DEBUG = true;
 
 /**
  * canvasを画像の大きさにリサイズする
