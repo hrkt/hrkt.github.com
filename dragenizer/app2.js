@@ -72,6 +72,9 @@ function detectAndDraw(img) {
     
     resizeCanvas(img, canvas);
 
+    // ベース画像を表示
+    ctx.drawImage(img, 0, 0);
+
     showMessage("顔を見つけようとしています。少々お待ちください。");
 
     // 顔検出
@@ -90,8 +93,6 @@ function detectAndDraw(img) {
 	return;
     }
 
-    // ベース画像を表示
-    ctx.drawImage(img, 0, 0);
 
     // ccvで検出された顔の候補の中からそれっぽいものを選ぶ。
     var targetIndex = selectTarget(img, comp, ctx);
