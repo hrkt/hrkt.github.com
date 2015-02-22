@@ -128,9 +128,7 @@ function detectAndDraw(img) {
     }
     var sx = hx * fw / hw;
     var sy = hy * fh / hh;
-    if(DEBUG){
-	ctx.drawImage(overlayImg, fx - sx, (fy + fh * 0.70) - sy, sw, sh);
-    }
+    ctx.drawImage(overlayImg, fx - sx, (fy + fh * 0.70) - sy, sw, sh);
     //lyrics
     drawLyrics(ctx, inw);
 
