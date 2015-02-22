@@ -1,0 +1,127 @@
+<html lang="ja">
+  <head>
+    <meta content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+      ドラゲナイザー
+    </title>
+    <style>
+    </style>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./css/additional.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1>ドラゲナイザー</h1>
+      ブラウザだけで、選んだ画像中の顔の近くに無線機の画像を重ね合わせます。処理はお手元の機器の中で行われ、<b>サーバに送信しません。</b><br>
+      (おことわり)顔の認識精度は、あまり高くなさそうです。個人的なテストでは<b>うまくいくのが半分くらい</b>です。
+      
+      <div>
+	<h3>1.歌詞をカスタマイズ(お好みで)</h3>
+	<input type="text" id="lyricText" length="40" size="40" value="ドラゲナイ ドラゲナイ ..."/>
+      </div>
+      <div>
+	<h3>2.画像を選ぶ</h3>
+	画像を選びます。1-(a)または1-(b)の方法が使えます。
+	<div class="list-group">
+	  <a href="#" class="list-group-item">
+	    <div>
+	      2-(a)MacかPCでファイルを選ぶか、iOS/Androidでファイルを選ぶ/カメラ撮影する場合はこちらのボタンを押してください。
+	      <input type="file" class="btn btn-primary" id="files" name="files[]">
+	      <output></output>
+	    </div>
+	  </a>
+	  <a href="#" class="list-group-item">
+	    <div>
+	      2-(b)MacかPCで、ファイルをドラッグ&ドロップするにはこちら。
+	      <div class="d-and-d-area" id="d-and-d">
+		MacやPCを使っている場合は、Finderやエクスプローラから画像を1つ選んでドラッグ、ここにドロップしてください。
+	      </div>
+	    </div>
+	  </a>
+	</div>
+      </div>
+      <div>
+	<h3>3.画像を保存する(お好みで)</h3>
+	<ul>
+	  <li>ブラウザにChromeを使っているときには、ボタンを押すとそのままダウンロードされます。</li>
+	  <li>iOSでSafariを使っている時には、ボタンを押すと別のタブで画像が開かれるので、そこで画像を長押しして「画像を保存」を選んでください。</li>
+	</ul>
+	<form>
+	  <input type="button" id="downloadButton" target="_blank" value="できた画像をブラウザからローカルに保存する">
+	</form>
+      </div>
+
+      
+      <div id="result">
+	出来上がりの画像がここに表示されます。
+	<div class="well">
+	  <div id="message"></div>
+	</div>
+
+	<canvas id="src"></canvas>
+      </div>
+
+      <hr>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">
+	お世話になったライブラリ
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+	  <div class="modal-content">
+	    <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">お世話になったライブラリ</h4>
+	    </div>
+	    <div class="modal-body">
+	      ドラゲナイザーは、以下のライブラリを使用しています。
+	      <table class="table">
+		<tr><th>ライブラリ名</th><th>サイト</th><th>ライセンス</th><th>目的</th></tr></tr>
+		<tr><td>liuliu/ccv</td><td><a href="https://github.com/liuliu/ccv">https://github.com/liuliu/ccv</a></td><td><a href="https://github.com/liuliu/ccv">BSD 3 & Creaative Commons 4.0</a></td><td>顔画像検出に使用</td></tr>
+		<tr><td>eligrey/canvas-toBlob.js</td><td><a href="https://github.com/eligrey/canvas-toBlob.js/">https://github.com/eligrey/canvas-toBlob.js/</a></td><td><a href="https://github.com/eligrey/canvas-toBlob.js/blob/master/LICENSE.md">MIT/X11</a></td><td>Canvasをblobにする。Fifefox以外のブラウザのために使用</td></tr>
+		<tr><td>eligrey/FileSaver.js</td><td><a href="https://github.com/eligrey/FileSaver.js">https://github.com/eligrey/FileSaver.js</a></td><td><a href="https://github.com/eligrey/FileSaver.js/blob/master/LICENSE.md">独自</a></tad><td>ファイル保存に使用</td></tr>
+		  <tr><td>JQuery2.1.3</td><td><a href="http://jquery.com/">http://jquery.com/</a></td><td><a href="https://jquery.org/license/">MIT</a></td><td>各種制御に使用</td></tr>
+		  <tr><td>BootStrap 3.3.2</td><td><a href="http://getbootstrap.com/">http://getbootstrap.com/</a></td><td><a href="https://github.com/twbs/bootstrap/blob/master/LICENSE">MIT</a></td><td>画面を整形するために使用</td></tr>
+		  <tr><td>無線機の画像(@nakagawa_hoさん)</td><td><a href="https://twitter.com/nakagawa_ho/status/558237574561423360/photo/1">Twitterの投稿</a></td><td><a href="https://twitter.com/nakagawa_ho/status/558237574561423360/photo/1">?</a></td><td>重ね合わせ画像に使用</td></tr>
+		  <tr><td></td><td></td><td></td><td></td></tr>
+		  
+	      </table>
+	    </div>
+	    <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    </div>
+	  </div>
+	</div>
+	
+      </div>
+      <hr>
+      
+      <div id="footer">
+	<p>Copyright(C) 2015 hrkt</p>
+      </div>
+      
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- dragenizer -->
+      <ins class="adsbygoogle"
+	   style="display:inline-block;width:320px;height:100px"
+	   data-ad-client="ca-pub-4354654360945948"
+	   data-ad-slot="7593752991"></ins>
+      <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div><!-- -container -->
+    <script src="./lib/ext/jquery/jquery-2.1.3.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
+    <script src='./lib/ext/ccv/ccv.js' type='text/javascript'></script>
+    <script src='./lib/ext/ccv/face.js' type='text/javascript'></script>
+    <script src='./lib/ext/canvas-toBlob/canvas-toBlob.js' type='text/javascript'></script>
+    <script src='./lib/ext/FileSaver.js/FileSaver.min.js' type='text/javascript'></script>
+    <script src='./overlay.js' type='text/javascript'></script>
+    <script src='./app2.js' type='text/javascript'></script>
+  </body>
+</html>
