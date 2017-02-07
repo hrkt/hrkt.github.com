@@ -1,0 +1,11 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "E7G75ZJC67.com.hrktsoft.UniversalLinkTest",
+                "paths": [ "*" ]
+            }
+        ]
+    }
+}
