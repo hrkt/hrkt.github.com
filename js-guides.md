@@ -1,6 +1,6 @@
 # Description
 
-This Gist entry consists of some coding styles, best practices, conventions of JavaScript and its frameworks.
+This entry consists of some coding styles, best practices, conventions of JavaScript and its frameworks.
 
 last update: 9 May 2017
 
