@@ -17,6 +17,8 @@ last update: 9 May 2017
 - Stars: N/A
 - Notes: It is a part of "Style guides for Google-originated open-source projects" https://github.com/google/styleguide
 
+- [in Japanese] http://cou929.nu/data/google_javascript_style_guide/
+
 ### JavaScript Style Guide
 
 - URL: https://github.com/airbnb/javascript
