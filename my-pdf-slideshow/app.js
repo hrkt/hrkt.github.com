@@ -52,6 +52,24 @@ function debug (msg) {
 }
 
 /**
+ * determine if passing through key event to browser is needed or not.
+ *
+ *
+ * specifically for passing through 'KeyF' event to browser on macOS
+ *
+ * @param {*} evt
+ * @returns true if event hould be passed throught to browser.
+ */
+function shouldPassThroughKeyEvent (evt) {
+  if (navigator.userAgent.indexOf('Mac') && evt.key === 'KeyF') {
+    // on macOS, Fn + F is assigned to 'Full Screen' by default.
+    // For this reason, we pass through this key event to browser.
+    return false
+  }
+  return true
+}
+
+/**
  * Get page info from document, resize canvas accordingly, and render page.
  * @param num Page number.
  */
@@ -61,17 +79,18 @@ function renderPage (num) {
   pdfDoc.getPage(num).then(function (page) {
     // treat scaling
 
-    // on modern devices, app's pixel : devices pixel is not always 1 : 1
-    const outputScale = window.devicePixelRatio || 1
-
     debug('window.devicePixelRatio' + window.devicePixelRatio)
 
-    const desiredWidth = window.innerWidth
-    const desiredHeight = window.innerHeight
+    const desiredWidth = document.documentElement.clientWidth
+    const desiredHeight = document.documentElement.clientHeight
+    debug('desiredWidth: ' + desiredWidth + ' desiredHeight: ' + desiredHeight)
+
     const viewport = page.getViewport({ scale: 1 })
     const scaleW = desiredWidth / viewport.width
     const scaleH = desiredHeight / viewport.height
-    const scale = Math.min(scaleW, scaleH) / outputScale
+
+    const scale = Math.min(scaleW, scaleH)
+
     debug('scale:' + scale)
     const scaledViewport = page.getViewport({ scale: scale })
 
@@ -120,7 +139,7 @@ function queueRenderPage (num) {
  * displays previous page.
  */
 function onPrevPage () {
-  if (pageNum <= 1) {
+  if (pdfDoc === null || pageNum <= 1) {
     return
   }
   pageNum--
@@ -131,7 +150,7 @@ function onPrevPage () {
  * displays next page.
  */
 function onNextPage () {
-  if (pageNum >= pdfDoc.numPages) {
+  if (pdfDoc === null || pageNum >= pdfDoc.numPages) {
     return
   }
   pageNum++
@@ -334,6 +353,8 @@ function handleGenericShortCut (evt) {
  * @returns true if event is handled in this function, otherwise false
  */
 function handleLessStyleShortCut (evt) {
+  const key = evt.keyCode || evt.charCode || 0
+  debug(key, evt.metaKey, evt.keyCode, evt.charCode)
   switch (evt.code) {
     case 'KeyB': {
       evt.preventDefault()
@@ -341,9 +362,11 @@ function handleLessStyleShortCut (evt) {
       break
     }
     case 'KeyF': {
-      evt.preventDefault()
+      if (!shouldPassThroughKeyEvent(evt)) {
+        evt.preventDefault()
+      }
       onNextPage()
-      break
+      return true
     }
     case 'Space': {
       evt.preventDefault()
