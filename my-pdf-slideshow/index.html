@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <!-- https://github.com/hrkt/my-pdf-slideshow -->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="app.css" />
+  </head>
+  <body>
+    <script src="./lib/pdfjs/pdf.js"></script>
+    <script src="./lib/pdfjs/pdf.worker.js"></script>
+    <script src="./lib/lodash/full.min.js"></script>
+    <div id="menu-area" style="visibility: visible">
+      [MyPdfSlideShow - a device local PDF viewer] - press "." to toggle on/off this menu
+      <hr />
+      &nbsp; &nbsp;
+      <label for="input-file">a PDF file to use</label>
+      <input type="file" id="input-file" accept=".pdf"/>
+      <span id="initial-message"><--Please choose a PDF file on your device.</span>
+      <span id="page-navigator">
+        <button id="prev">Previous</button>
+        <button id="next">Next</button>
+        &nbsp; &nbsp;
+        <span
+          >Page: <span id="page_num"></span> / <span id="page_count"></span
+        ></span>
+      </span>
+      <hr />
+      <br />
+      <table>
+        <caption>
+          Usage
+        </caption>
+        <thead>
+          <tr>
+            <th><i>Key</i></th>
+            <th><i>Command</i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>SPACE <i>or</i> f</th>
+            <th>go to next page</th>
+          </tr>
+          <tr>
+            <th>b</th>
+            <th>go to previous page</th>
+          </tr>
+          <tr>
+            <th>p</th>
+            <th>go to first page</th>
+          </tr>
+          <tr>
+            <th>g</th>
+            <th>go to last page</th>
+          </tr>
+          <tr>
+            <th>press digits + ENTER</th>
+            <th>go to specified page</th>
+          </tr>
+          <tr>
+            <th>r</th>
+            <th>reload page</th>
+          </tr>
+          <tr>
+            <th>o</th>
+            <th>open local folder</th>
+          </tr>
+          <tr>
+            <th>.</th>
+            <th>toggle show/hide this menu</th>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      https://github.com/hrkt/my-pdf-slideshow
+    </div>
+
+    <canvas id="the-canvas"></canvas>
+    <script src="./app.js"></script>
+  </body>
+</html>

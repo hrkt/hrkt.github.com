@@ -1,0 +1,25 @@
+#the-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+#page-navigator {
+    visibility: hidden;
+}
+
+#menu-area {
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    border: 3px solid #326693;
+    z-index: 100;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 30px;
+    background-color: lightgrey;
+    opacity: 0.95;
+}
+
