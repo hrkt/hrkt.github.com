@@ -1,3 +1,8 @@
+/**
+ * GitHub Repository https://github.com/hrkt/my-pdf-slideshow
+ * (C) 2022 Hiroki Ito
+ */
+
 'use strict'
 
 // Loaded via <script> tag, create shortcut to access PDF.js exports.
