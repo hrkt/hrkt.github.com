@@ -21,6 +21,10 @@ const ctx = canvas.getContext('2d')
 
 // other variables
 
+// @type {LinkArea} links in current rendered page
+// updated by render(), used in handleCanvasClickEvent
+let linksInCurrentPage = []
+
 // buffer for numbers + Enter
 let numberBuffer = ''
 
@@ -53,7 +57,7 @@ function getInputFileElement () {
  * @param {*} msg
  */
 function debug (msg) {
-  // console.log(msg)
+  console.log(msg)
 }
 
 /**
@@ -72,6 +76,41 @@ function shouldPassThroughKeyEvent (evt) {
     return false
   }
   return true
+}
+
+/**
+ * a class to hold an link area information
+ */
+class LinkArea {
+  constructor (x1, y1, x2, y2, url) {
+    this.x1 = x1
+    this.y1 = y1
+    this.x2 = x2
+    this.y2 = y2
+    this.url = url
+  }
+}
+
+/**
+ * handles click event in the-canvas area
+ * @param {*} evt evt
+ */
+function handleCanvasClickEvent (evt) {
+  const offset = canvas.getBoundingClientRect()
+  const x = evt.clientX - offset.left
+  const y = evt.clientY - offset.top
+  for (let i = 0; i < linksInCurrentPage.length; i++) {
+    const l = linksInCurrentPage[i]
+    if (
+      l.x1 <= x &&
+      x <= l.x2 &&
+      l.y1 <= y &&
+      y <= l.y2
+    ) {
+      const tgt = evt.ctrlKey ? '_blank' : 'mypdfslideshow'
+      window.open(l.url, tgt)
+    }
+  }
 }
 
 /**
@@ -110,6 +149,24 @@ function renderPage (num) {
       viewport: scaledViewport
     }
     const renderTask = page.render(renderContext)
+
+    linksInCurrentPage = []
+    page.getAnnotations().then((annotations) => {
+      for (let i = 0; i < annotations.length; i++) {
+        const annotation = annotations[i]
+        console.dir(annotation)
+        if (annotation.subtype !== 'Link') {
+          // only handle link. ignore other types like line, rect, etc.
+          continue
+        }
+        const url = annotation.url
+        const x1 = annotation.rect[0]
+        const y1 = annotation.rect[1]
+        const x2 = annotation.rect[2]
+        const y2 = annotation.rect[3]
+        linksInCurrentPage.push(new LinkArea(x1 * scale, canvas.height - y2 * scale, x2 * scale, canvas.height - y1 * scale, url))
+      }
+    })
 
     // Wait for rendering to finish
     renderTask.promise.then(function () {
@@ -472,6 +529,15 @@ function init () {
       if (!handleGenericShortCut(evt)) {
         handleLessStyleShortCut(evt)
       }
+    },
+    false
+  )
+
+  // handles link
+  canvas.addEventListener(
+    'click',
+    (evt) => {
+      handleCanvasClickEvent(evt)
     },
     false
   )

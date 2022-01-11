@@ -23,3 +23,7 @@
     opacity: 0.95;
 }
 
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
