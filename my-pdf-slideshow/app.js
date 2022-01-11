@@ -57,7 +57,7 @@ function getInputFileElement () {
  * @param {*} msg
  */
 function debug (msg) {
-  console.log(msg)
+  // console.log(msg)
 }
 
 /**
