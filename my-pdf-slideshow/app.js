@@ -154,7 +154,6 @@ function renderPage (num) {
     page.getAnnotations().then((annotations) => {
       for (let i = 0; i < annotations.length; i++) {
         const annotation = annotations[i]
-        console.dir(annotation)
         if (annotation.subtype !== 'Link') {
           // only handle link. ignore other types like line, rect, etc.
           continue
