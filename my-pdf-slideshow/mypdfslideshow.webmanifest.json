@@ -1,0 +1,18 @@
+{
+    "short_name": "MyPdfSlideshow",
+    "name": "My PDF Slideshow",
+    "display": "browser",
+    "start_url": "index.html",
+    "icons": [
+        {
+            "src": "images/mps-icon-128-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/mps-icon-128-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

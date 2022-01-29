@@ -118,6 +118,10 @@ function handleCanvasClickEvent (evt) {
  * @param num Page number.
  */
 function renderPage (num) {
+  if (pdfDoc === null) {
+    // do not render now
+    return
+  }
   pageRendering = true
   // Using promise to fetch the page
   pdfDoc.getPage(num).then(function (page) {
@@ -544,3 +548,15 @@ function init () {
 
 // call init() when DOM is ready
 window.onload = init()
+
+// enable service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./service-worker.js', { updateViaCache: 'none', scope: './' })
+    .then((reg) => {
+      // registration worked
+      console.log('Registration succeeded. Scope is ' + reg.scope)
+    }).catch((error) => {
+      // registration failed
+      console.log('Registration failed with ' + error)
+    })
+}
