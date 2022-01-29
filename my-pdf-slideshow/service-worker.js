@@ -1,4 +1,4 @@
-const serviceWorkerVersion = '0.1.0'
+const serviceWorkerVersion = '0.1.1'
 const cacheName = 'MyPdfSlideshowPWA-v' + serviceWorkerVersion
 const appShellFiles = [
   './index.html',
