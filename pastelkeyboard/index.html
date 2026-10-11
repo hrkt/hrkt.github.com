@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パステルキーボード - タテ書き50音表のiOSキーボード</title>
+    <style>
+        :root {
+            --primary: #f472b6;
+            --primary-dark: #db2777;
+            --bg: #fff5f7;
+            --card-bg: #ffffff;
+            --text: #374151;
+            --text-light: #6b7280;
+            --border: #fbcfe8;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 24px 16px;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 36px 30px;
+            border-radius: 18px;
+            box-shadow: 0 4px 20px rgba(244, 114, 182, 0.12);
+            border: 1px solid var(--border);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px dashed var(--border);
+            padding-bottom: 24px;
+            margin-bottom: 30px;
+        }
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: var(--primary-dark);
+            font-size: 2rem;
+            margin: 0 0 8px 0;
+        }
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+        h2 {
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin-top: 32px;
+            margin-bottom: 14px;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background-color: #fdf2f8;
+            border: 1px solid #fbcfe8;
+            border-radius: 12px;
+            padding: 18px;
+        }
+        .feature-card h3 {
+            margin: 0 0 8px 0;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+        .steps ol {
+            padding-left: 20px;
+        }
+        .steps li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background-color: #fdf2f8;
+            border: 1px solid #fbcfe8;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 20px 0;
+        }
+        .nav-links {
+            margin-top: 30px;
+            padding: 16px;
+            background: #fafafa;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .nav-links a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 14px;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            border-top: 1px solid #f3f4f6;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">🎀</div>
+            <h1>パステルキーボード</h1>
+            <div class="subtitle">タテ書き50音表の、かわいい日本語カスタムキーボード</div>
+        </div>
+
+        <p>「パステルキーボード」は、教科書や五十音表で見慣れたタテ書き配列をそのまま再現したiOS専用の日本語カスタムキーボードです。フリック入力が苦手な方や、ひらがなを覚えたてのお子様でも、かんたんに文字を探して入力できます。</p>
+
+        <h2>主な特徴</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>📖 タテ書き50音表</h3>
+                <p>右から「あ・か・さ・た・な…」と並ぶ、小学校の教科書でおなじみの配列です。</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎨 6種類のパステルテーマ</h3>
+                <p>パステルピンク、ミントソーダ、ラベンダーなど、かわいい配色を自由に選べます。</p>
+            </div>
+            <div class="feature-card">
+                <h3>💭 リアルタイム予測変換</h3>
+                <p>常用漢字や小中学校で習う漢字、地名・人名などをサクサク変換できます。</p>
+            </div>
+            <div class="feature-card">
+                <h3>🫧 たのしいプチプチ音</h3>
+                <p>キーを押すとプチッと心地よい音が鳴り、タイピングが楽しくなります（ON/OFF切替可能）。</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔒 フルアクセス不要（安心安全）</h3>
+                <p>ネットワーク通信を一切行わないため、入力した文字や個人情報が外部に送信される心配はありません。</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌟 数字・記号・顔文字対応</h3>
+                <p>数字や句読点のほか、かわいい特殊記号や顔文字もワンタップで切り替えて入力できます。</p>
+            </div>
+        </div>
+
+        <h2>使い方・キーボードの追加手順</h2>
+        <div class="steps">
+            <ol>
+                <li>iPhoneの<strong>「設定」</strong>アプリを開きます。</li>
+                <li><strong>「一般」➔「キーボード」➔「キーボード」</strong>をタップします。</li>
+                <li><strong>「新しいキーボードを追加…」</strong>をタップし、一覧から<strong>「パステルキーボード」</strong>を選択します。</li>
+                <li>文字入力画面で地球儀アイコン 🌐 を長押しまたはタップして、「パステルキーボード」に切り替えます。</li>
+            </ol>
+        </div>
+
+        <div class="highlight-box">
+            ※ 本キーボードはフルアクセスの許可を必要としません。許可をOFFにしたまますべての機能をお使いいただけます。
+        </div>
+
+        <h2>サポート・お問い合わせ</h2>
+        <p>不具合のご報告、ご要望、お問い合わせは以下の窓口よりお願いいたします。</p>
+        <ul>
+            <li>開発者: hrktsoft</li>
+            <li>GitHubサポート窓口: <a href="https://github.com/hrkt" target="_blank" rel="noopener">https://github.com/hrkt</a></li>
+        </ul>
+
+        <div class="nav-links">
+            <a href="privacy.html">🔒 プライバシーポリシー</a>
+            <a href="https://github.com/hrkt" target="_blank" rel="noopener">💬 サポート (GitHub)</a>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 hrktsoft. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
